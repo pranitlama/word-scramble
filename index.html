@@ -9,6 +9,10 @@
 
 </head>
 <body>
+   <div class="info">
+      <p class="skips">Skip:<span>3</span></p>
+      <p class="point">Score:<span>0</span></p>
+   </div>
     <div class="container">
         <h2>WORD SCRAMBLE</h2>
          <div class="game">
@@ -16,11 +20,11 @@
             <p class="hint">Hint:<span class="h">most played game</span></p>
          </div>
          <div class="uinput">
-            <input type="text" placeholder="Enter a word">
+            <input type="text" id="usinput" placeholder="Enter a word">
          </div>
          <div class="button">
             <button class="new ref" onclick="randomword()">New Word</button>
-            <button class="new con">Enter Word</button>
+            <button class="new con" onclick="check()">Enter Word</button>
          </div>
     </div>
 </body>

@@ -21,7 +21,9 @@ body{
     width: 550px;
     background: #fff;
     border-radius:5px;
-
+    position: relative;
+    left: -50px;
+  
 }
 
 .container h2{
@@ -29,6 +31,7 @@ body{
     margin-top: 25px;
     margin-bottom: 25px;
 }
+
 
 .game .word{
         font-size: 40px;
@@ -60,6 +63,14 @@ input[type=text]{
     padding: 20px;
 
 }
+.info{
+    display: flex;
+    justify-content: space-around;   
+    position: relative;
+    top: -180px;
+    left: 300px;
+
+} 
 
 .new{
 
@@ -71,6 +82,7 @@ input[type=text]{
     cursor: pointer; 
     transition:  0.2s all linear;
 }
+
 
 
 .new:hover{

@@ -1,5 +1,6 @@
 const words=document.querySelector(".word");
 const hints=document.querySelector(".h");
+let uinput=document.getElementById("usinput");
 const letter=[
         {
             word:"arrivals",
@@ -81,7 +82,7 @@ const letter=[
             hint:"stiff plastic strand on toothbrush"
         }    
 ]
-
+let ans;
 function randomword(){
     let random=letter[Math.floor(Math.random()*letter.length)];
     let wordarr=random.word.split("");
@@ -92,13 +93,24 @@ function randomword(){
         wordarr[i]=wordarr[j];
         wordarr[j]=t;
     }  
-    console.log(random);
-    console.log(wordarr); 
+    ans=random.word; 
+    uinput.value="";
     words.innerHTML=wordarr.join("");
     hints.innerHTML=random.hint;
 
 }
-
+function check(){
+    let userinput=uinput.value;
+    if(userinput!=ans)
+    {
+        alert("wrong");
+    }
+    else{
+        alert("correct");
+        uinput.value="";
+        randomword();
+    }
+}
 
 randomword()
 
