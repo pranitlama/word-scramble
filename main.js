@@ -9,6 +9,8 @@ let p=0;
 let s=3;
 let l=3;
 let ans;
+let cinterval;
+let winterval;
 
 const letter=[
         {
@@ -91,9 +93,7 @@ const letter=[
             hint:"stiff plastic strand on toothbrush"
         }    
 ]
-
 function randomword(){
-
     let m=Math.floor(Math.random()*letter.length);
     let random=letter[m];
     let wordarr=random.word.split("");
@@ -116,16 +116,20 @@ function randomword(){
 
 
 function correct(){
+ 
     p++;
     uinput.value="";
     points.innerHTML=p;
+
   
 }
 
 function wrong(){
+   
     l--;
     uinput.value="";
     lives.innerHTML=l;
+  
 }
 
 function isalive(){
@@ -146,14 +150,20 @@ else{
 
     if(userinput!==ans)
     {
-        alert("wrong");
-        
+        usinput.classList.add("wrong");
+        winterval= setTimeout(()=>{
+            usinput.classList.remove("wrong");
+            
+        },500);
         wrong();
         isalive();
         
     }
     else{
-        alert("correct");
+        usinput.classList.add("correct");
+        cinterval= setTimeout(()=>{
+            usinput.classList.remove("correct");
+        },500);
         correct();
         randomword();
         
@@ -165,12 +175,15 @@ else{
 
 function openpopup(){
     popup.classList.add("open-popup");
+  
     tpoints.innerHTML=p;
 }
 function closepopup(){
     points.innerHTML=0;
     lives.innerHTML=3;
     popup.classList.remove("open-popup");
+    usinput.classList.remove("correct");
+usinput.classList.remove("wrong");
 }
 
 

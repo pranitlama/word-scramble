@@ -57,6 +57,14 @@ input[type=text]{
     margin-bottom: 10px;
 }
 
+.wrong{
+    border: 2px red solid;
+}
+.correct{
+    border: 2px #6fd649 solid;
+}
+
+
 .button{
     display: flex;
     justify-content: space-around;
