@@ -1,6 +1,15 @@
 const words=document.querySelector(".word");
 const hints=document.querySelector(".h");
 let uinput=document.getElementById("usinput");
+let points=document.querySelector(".point");
+let skips=document.querySelector(".skip");
+let lives=document.querySelector(".live");
+let tpoints=document.querySelector(".tpoint");
+let p=0;
+let s=3;
+let l=3;
+let ans;
+
 const letter=[
         {
             word:"arrivals",
@@ -82,9 +91,11 @@ const letter=[
             hint:"stiff plastic strand on toothbrush"
         }    
 ]
-let ans;
+
 function randomword(){
-    let random=letter[Math.floor(Math.random()*letter.length)];
+
+    let m=Math.floor(Math.random()*letter.length);
+    let random=letter[m];
     let wordarr=random.word.split("");
     for(i=wordarr.length-1;i>0;i--)
     {
@@ -93,24 +104,76 @@ function randomword(){
         wordarr[i]=wordarr[j];
         wordarr[j]=t;
     }  
+    // letter.splice(m,1);
     ans=random.word; 
     uinput.value="";
+    uinput.setAttribute("maxlength",ans.length);
     words.innerHTML=wordarr.join("");
     hints.innerHTML=random.hint;
+    console.log(letter);
 
+}
+
+
+function correct(){
+    p++;
+    uinput.value="";
+    points.innerHTML=p;
+  
+}
+
+function wrong(){
+    l--;
+    uinput.value="";
+    lives.innerHTML=l;
+}
+
+function isalive(){
+    if(l==0)
+    {
+        openpopup();
+    }
 }
 function check(){
     let userinput=uinput.value;
-    if(userinput!=ans)
+    
+if(userinput=="")
+{
+    alert("please enter a word");
+
+}
+else{
+
+    if(userinput!==ans)
     {
         alert("wrong");
+        
+        wrong();
+        isalive();
+        
     }
     else{
         alert("correct");
-        uinput.value="";
+        correct();
         randomword();
+        
     }
 }
+    
+    
+}
+
+function openpopup(){
+    popup.classList.add("open-popup");
+    tpoints.innerHTML=p;
+}
+function closepopup(){
+    points.innerHTML=0;
+    lives.innerHTML=3;
+    popup.classList.remove("open-popup");
+}
+
 
 randomword()
+
 
