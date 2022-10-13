@@ -21,88 +21,101 @@ const letter=[
             word:"cucumber",
             hint:"this green vegetable is 96% water"
         }
-        ,
-        {
-            word:"username",
-            hint:"identification used to sign into a computer"
-        }
-        ,
-        {
-            word:"navigate",
-            hint:"to find your way somewhere"
-        }
-        ,
-        {
-            word:"cinnamon",
-            hint:"brown spice from tree bark"
-        }
-        ,
-        {
-            word:"colony",
-            hint:"ant community"
-        }
-        ,
-        {
-            word:"chowchow",
-            hint:"dog breed also known as tang quan"
-        }
-        ,
-        {
-            word:"perfect",
-            hint:"flawless"
-        }
-        ,
-        {
-            word:"captain",
-            hint:"commander of aeroplane or spaceship"
+        // ,
+        // {
+        //     word:"username",
+        //     hint:"identification used to sign into a computer"
+        // }
+        // ,
+        // {
+        //     word:"navigate",
+        //     hint:"to find your way somewhere"
+        // }
+        // ,
+        // {
+        //     word:"cinnamon",
+        //     hint:"brown spice from tree bark"
+        // }
+        // ,
+        // {
+        //     word:"colony",
+        //     hint:"ant community"
+        // }
+        // ,
+        // {
+        //     word:"chowchow",
+        //     hint:"dog breed also known as tang quan"
+        // }
+        // ,
+        // {
+        //     word:"perfect",
+        //     hint:"flawless"
+        // }
+        // ,
+        // {
+        //     word:"captain",
+        //     hint:"commander of aeroplane or spaceship"
            
-        }
-        ,
-        {
-            word:"lizard",
-            hint:"they look like snake with feets"
-        }
-        ,
-        {
-            word:"lollipop",
-            hint:"hard candy mounted on a stick"
-        }
-        ,
-        {
-            word:"baroness",
-            hint:"title of nobality,female"
-        }
-        ,
-        {
-            word:"mandarin",
-            hint:"small type of orange"
-        }
-        ,
-        {
-            word:"hydrogen",
-            hint:"Main gas in Jupiter"
-        }
-        ,
-        {
-            word:"xavier",
-            hint:"mutant professor"
-        }
-        ,
-        {
-            word:"bristle",
-            hint:"stiff plastic strand on toothbrush"
-        }    
+        // }
+        // ,
+        // {
+        //     word:"lizard",
+        //     hint:"they look like snake with feets"
+        // }
+        // ,
+        // {
+        //     word:"lollipop",
+        //     hint:"hard candy mounted on a stick"
+        // }
+        // ,
+        // {
+        //     word:"baroness",
+        //     hint:"title of nobality,female"
+        // }
+        // ,
+        // {
+        //     word:"mandarin",
+        //     hint:"small type of orange"
+        // }
+        // ,
+        // {
+        //     word:"hydrogen",
+        //     hint:"Main gas in Jupiter"
+        // }
+        // ,
+        // {
+        //     word:"xavier",
+        //     hint:"mutant professor"
+        // }
+        // ,
+        // {
+        //     word:"bristle",
+        //     hint:"stiff plastic strand on toothbrush"
+        // }    
 ]
+
+const aletter=[];
 function randomword(){
     let m=Math.floor(Math.random()*letter.length);
     let random=letter[m];
     let wordarr=random.word.split("");
-    for(i=wordarr.length-1;i>0;i--)
+    if(aletter.length==letter.length)
     {
-        let j=Math.floor(Math.random()*(i+1));
-        let t=wordarr[i];
-        wordarr[i]=wordarr[j];
-        wordarr[j]=t;
+        openpopup();
+        
+    }
+    else if(aletter.includes(random.word))
+    {
+        randomword();
+    }
+    else{
+
+        for(i=wordarr.length-1;i>0;i--)
+        {
+            let j=Math.floor(Math.random()*(i+1));
+            let t=wordarr[i];
+            wordarr[i]=wordarr[j];
+            wordarr[j]=t;
     }  
     // letter.splice(m,1);
     ans=random.word; 
@@ -111,6 +124,9 @@ function randomword(){
     words.innerHTML=wordarr.join("");
     hints.innerHTML=random.hint;
     console.log(letter);
+    console.log(aletter);
+}
+
 
 }
 
@@ -120,6 +136,7 @@ function correct(){
     p++;
     uinput.value="";
     points.innerHTML=p;
+   
 
   
 }
@@ -160,6 +177,7 @@ else{
         
     }
     else{
+        aletter.push(ans);
         usinput.classList.add("correct");
         cinterval= setTimeout(()=>{
             usinput.classList.remove("correct");
@@ -174,8 +192,11 @@ else{
 }
 
 function openpopup(){
+ while(aletter.length)
+ {
+    aletter.pop();
+ }
     popup.classList.add("open-popup");
-  
     tpoints.innerHTML=p;
 }
 function closepopup(){
@@ -183,10 +204,11 @@ function closepopup(){
     lives.innerHTML=3;
     popup.classList.remove("open-popup");
     usinput.classList.remove("correct");
-usinput.classList.remove("wrong");
+    usinput.classList.remove("wrong");
+
 }
 
 
-randomword()
+ randomword()
 
 
