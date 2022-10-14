@@ -5,97 +5,16 @@ let points=document.querySelector(".point");
 let skips=document.querySelector(".skip");
 let lives=document.querySelector(".live");
 let tpoints=document.querySelector(".tpoint");
+let r=document.querySelector(".result");
 let p=0;
 let s=3;
 let l=3;
 let ans;
 let cinterval;
 let winterval;
-
-const letter=[
-        {
-            word:"arrivals",
-            hint:"Airport area where you pick up family and friends"
-        },
-        {
-            word:"cucumber",
-            hint:"this green vegetable is 96% water"
-        }
-        // ,
-        // {
-        //     word:"username",
-        //     hint:"identification used to sign into a computer"
-        // }
-        // ,
-        // {
-        //     word:"navigate",
-        //     hint:"to find your way somewhere"
-        // }
-        // ,
-        // {
-        //     word:"cinnamon",
-        //     hint:"brown spice from tree bark"
-        // }
-        // ,
-        // {
-        //     word:"colony",
-        //     hint:"ant community"
-        // }
-        // ,
-        // {
-        //     word:"chowchow",
-        //     hint:"dog breed also known as tang quan"
-        // }
-        // ,
-        // {
-        //     word:"perfect",
-        //     hint:"flawless"
-        // }
-        // ,
-        // {
-        //     word:"captain",
-        //     hint:"commander of aeroplane or spaceship"
-           
-        // }
-        // ,
-        // {
-        //     word:"lizard",
-        //     hint:"they look like snake with feets"
-        // }
-        // ,
-        // {
-        //     word:"lollipop",
-        //     hint:"hard candy mounted on a stick"
-        // }
-        // ,
-        // {
-        //     word:"baroness",
-        //     hint:"title of nobality,female"
-        // }
-        // ,
-        // {
-        //     word:"mandarin",
-        //     hint:"small type of orange"
-        // }
-        // ,
-        // {
-        //     word:"hydrogen",
-        //     hint:"Main gas in Jupiter"
-        // }
-        // ,
-        // {
-        //     word:"xavier",
-        //     hint:"mutant professor"
-        // }
-        // ,
-        // {
-        //     word:"bristle",
-        //     hint:"stiff plastic strand on toothbrush"
-        // }    
-]
-
 const aletter=[];
 function randomword(){
+
     let m=Math.floor(Math.random()*letter.length);
     let random=letter[m];
     let wordarr=random.word.split("");
@@ -117,19 +36,34 @@ function randomword(){
             wordarr[i]=wordarr[j];
             wordarr[j]=t;
     }  
-    // letter.splice(m,1);
+
     ans=random.word; 
     uinput.value="";
     uinput.setAttribute("maxlength",ans.length);
     words.innerHTML=wordarr.join("");
     hints.innerHTML=random.hint;
-    console.log(letter);
-    console.log(aletter);
+    skips.innerHTML=s;
+    // console.log(letter);
+    //  console.log(p);
+    //  console.log(s);
+    // console.log(aletter);
 }
 
 
 }
 
+document.getElementById("red").onclick=function(){
+    if(s<=0)
+    {
+        document.getElementById("red").disabled = true;
+        alert("skipped used");
+    }
+    else{
+
+        s--;
+        randomword();
+    }
+ }
 
 function correct(){
  
@@ -156,7 +90,7 @@ function isalive(){
     }
 }
 function check(){
-    let userinput=uinput.value;
+    let userinput=uinput.value.toLowerCase();
     
 if(userinput=="")
 {
@@ -196,8 +130,20 @@ function openpopup(){
  {
     aletter.pop();
  }
+
+ if(p==letter.length)
+ {
+        r.innerHTML="Congratulation";
+ }
+ else{
+    r.innerHTML="Game Over";
+ }
     popup.classList.add("open-popup");
     tpoints.innerHTML=p;
+    p=0;
+    s=3;
+     l=3;
+     document.getElementById("red").disabled = false;
 }
 function closepopup(){
     points.innerHTML=0;
@@ -205,6 +151,7 @@ function closepopup(){
     popup.classList.remove("open-popup");
     usinput.classList.remove("correct");
     usinput.classList.remove("wrong");
+    randomword();
 
 }
 

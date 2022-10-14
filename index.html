@@ -24,15 +24,16 @@
             <input type="text" id="usinput" placeholder="Enter a word" required>
          </div>
          <div class="button">
-            <button class="ref" id="red" onclick="randomword()">New Word</button>
+            <button class="ref" type="submit" id="red" onclick="randomword()">Skip Word</button>
             <button class="con" onclick="check()">Enter Word</button>
          </div>
     </div>
     <div class="popup" id="popup">
-      <h2 id="result">GAME OVER</h2>
+      <h2 class="result">GAME OVER</h2>
       <h3>TOTAL SCORE:<span class="tpoint">0</span></h3>
       <button type="button" onclick="closepopup()">Play Again</button>
   </div>
 </body>
-<script src="main.js"></script>
+<script src="word.js" ></script>
+<script src="main.js" ></script>
 </html>
