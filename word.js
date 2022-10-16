@@ -112,7 +112,7 @@ const letter=[
     ,
     {
         word:"emoticon",
-        hint:"Facial expression created with computer keybord"
+        hint:"Facial expression created with computer keyboard"
     } 
     ,
     {
@@ -132,7 +132,7 @@ const letter=[
     ,
     {
         word:"cougar",
-        hint:"Large feline aka mountai lion or puma"
+        hint:"Large feline aka mountain lion or puma"
     } 
     ,
     {
